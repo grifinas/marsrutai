@@ -1,22 +1,36 @@
-//comment
-/*
-    multiline comment
-*/
 #include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
 
+struct Edge;
+
+#include "graph.cpp"
+
 using namespace std;
 
 int main(){
-    cout << "hello world" << endl;
+    Graph gg;
 
-    vector <int> jj;    
 
-    jj.push_back(7);
+    int id = gg.addVertex(); 
+    id = gg.addVertex(); 
+    id = gg.addVertex(); 
+    id = gg.addVertex(); 
 
-    cout << "v" << jj.at(0) << endl;
+    cout << "1 " << id << endl;
+    
+    Vertex v = gg.getVertex(id);
+    
+    gg.vertexLink(0, 1);
+    gg.vertexLink(1, 2);
 
+
+    v.sss();
+
+    gg.printGraph();
+
+
+    cout << "done" << endl;
     return 0;
 }
