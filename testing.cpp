@@ -14,16 +14,18 @@ using namespace std;
 int main(){
     Graph gg;
 
-    int id = gg.addVertex(); 
-    id = gg.addVertex(); 
-    id = gg.addVertex(); 
-    id = gg.addVertex(); 
+    gg++; 
+    gg++; 
+    gg++; 
+    gg++; 
     
     gg.vertexLink(1, 2);
     gg.vertexLink(2, 3);
     gg.vertexLink(4, 1);
 
-    Vertex *v = gg.getVertex(1);
+    Vertex *v = gg[1];
+
+    cout << v -> getId() << endl;
 
     map<Vertex*, int> visited;
 

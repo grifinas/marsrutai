@@ -7,6 +7,8 @@ class Graph{
         int addVertex();
         bool vertexLink(int, int);
         Vertex* getVertex(int);
+        Vertex* operator[](const int);
+        Vertex* operator++(const int);
         void printGraph();
         std::vector<Vertex*> aStar(int, int);
     private:
@@ -19,6 +21,15 @@ class Graph{
 #include "astar.cpp"
 
 unsigned int Graph::vertexCount = 0;
+
+Vertex* Graph::operator[](const int id){
+    return getVertex(id);
+}
+
+Vertex* Graph::operator++(const int irrelevant){
+    addVertex();
+    return getVertex(vertexCount);
+}
 
 int Graph::addVertex(){
      int vert_id = ++vertexCount;
