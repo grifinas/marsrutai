@@ -2,36 +2,37 @@
 
 class Graph{
     public:
-        // Vertex vertices;
         static unsigned int vertexCount;
 
         int addVertex();
         bool vertexLink(int, int);
-        int test();
-        Vertex getVertex(int);
+        Vertex* getVertex(int);
         void printGraph();
+        std::vector<Vertex*> aStar(int, int);
     private:
-        std::vector <Vertex*> vertices;
+        std::map <int, Vertex*> vertices;
+        int aStarHeuristicCost(Vertex*, Vertex*);
+        Vertex* getAStarSmallestVertex(std::map<Vertex*, int>);
+        std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*>, Vertex*);
 };
+
+#include "astar.cpp"
+
 unsigned int Graph::vertexCount = 0;
 
 int Graph::addVertex(){
      int vert_id = ++vertexCount;
      Vertex *v = new Vertex(vert_id);
-     vertices.push_back(v);
+     vertices[vert_id] = v;
      return vert_id;
 }
 
-Vertex Graph::getVertex(int id){
+Vertex* Graph::getVertex(int id){
     try{ 
-        return *vertices.at(id); 
+        return vertices[id]; 
     }catch(std::out_of_range){
-        return Vertex();
+        return new Vertex();
     }
-}
-
-int Graph::test(){
-    return (int)vertexCount;
 }
 
 bool Graph::vertexLink(int v_id1, int v_id2){
@@ -40,6 +41,7 @@ bool Graph::vertexLink(int v_id1, int v_id2){
         v1ptr = vertices.at(v_id1);
         v2ptr = vertices.at(v_id2);
     }catch(std::out_of_range){
+        std::cout << "unable to link vertices, " << v_id1 << " & " << v_id2 << std::endl; 
         return false;
     }
 
@@ -50,7 +52,9 @@ bool Graph::vertexLink(int v_id1, int v_id2){
 }
 
 void Graph::printGraph(){
-    for(auto const &i : vertices){
-        i -> printVertex();
+    for(auto const& v : vertices){
+        // std::cout << "@:" << v.first << " ";
+        v.second -> printVertex();
     }
 }
+

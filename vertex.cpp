@@ -3,8 +3,10 @@
 class Vertex{
     public:
         Edge addNeighbour(Vertex*);
-        void sss();
         unsigned int getId();
+        std::map <Vertex*, Edge> getNeighbours();
+        Edge getNeighbour(Vertex*);
+        Edge getSmallestNeighbouringEdge(std::map<Vertex*, int>);
         void printVertex();
         void printEdges();
         Vertex();
@@ -12,9 +14,9 @@ class Vertex{
         ~Vertex();
     private:
         unsigned int id;
-        std::vector <Edge> edges;
-        std::vector <Vertex*> neighbours;
-    protected:
+        // std::vector <Edge> edges;
+        // std::vector <Vertex*> neighbours;
+        std::map <Vertex*, Edge> neighbours;
         Edge makeEdge(Vertex*);
 };
 
@@ -37,30 +39,71 @@ Vertex::~Vertex(){
     std::cout << "Vertex::" << id << "has been destroyed" << std::endl;
 }
 
-void Vertex::sss(){
-    std::cout << "vertex things" << std::endl;
-}
-
 Edge Vertex::addNeighbour(Vertex *n){
-    Edge e = makeEdge(n);
-    edges.push_back(e);
-    neighbours.push_back(n);
+    neighbours[n] = makeEdge(n); 
+    return neighbours[n];
 }
 
 Edge Vertex::makeEdge(Vertex *p){
     Edge e;
-    e.weight = rand() % 255;
+    e.weight = (rand() % 255) + 1;
     e.to = p;  
     return e;
 }
 
 void Vertex::printVertex(){
-    std::cout << "Vertex::" << id << " has Edges" << std::endl;
+    std::cout << "Vertex::" << id;
+    std::string text;
+    if(neighbours.size() < 1){
+        text = "is unconnected";
+    }else{
+        text = "has Edges";
+    }
+    std::cout << " " << text << std::endl;
     printEdges();
 }
 
 void Vertex::printEdges(){
-    for(auto i : edges){
-        std::cout << i.weight << " => " << i.to -> getId() << std::endl;
+    for(auto const& neighbour : neighbours){
+        Edge e = neighbour.second;
+        std::cout << e.weight << " => " << e.to -> getId() << std::endl;
     }
+}
+
+std::map <Vertex*, Edge> Vertex::getNeighbours(){
+    return neighbours;
+}
+
+Edge Vertex::getNeighbour(Vertex* v){
+    Edge e;
+    try{
+        e = neighbours.at(v);
+    }catch(std::out_of_range){
+        std::cout << "Vertex::getNeighbour unable to get neighbour at position " << v << std::endl;
+        throw std::out_of_range("no such vertex");
+    }
+    
+    return e;
+}
+
+Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited){
+    Edge lowEdge;
+    lowEdge.weight = -1;
+    int count = 0;
+    for(auto const& i : getNeighbours()){
+        //safeguard so new Edge with a `to` to random memory wouldn't return
+        if(visited[i.first] && (++count < neighbours.size() || lowEdge.weight != -1)){
+            continue;
+        }
+        Edge e = i.second;
+        if(e.weight < lowEdge.weight || lowEdge.weight < 0){
+            lowEdge = e;
+        }
+    }
+
+    if(lowEdge.weight == -1){
+        throw std::runtime_error("invalid edge structure generated");
+    }
+
+    return lowEdge;
 }
