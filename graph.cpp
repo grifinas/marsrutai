@@ -10,12 +10,9 @@ class Graph{
         Vertex* operator[](const int);
         Vertex* operator++(const int);
         void printGraph();
-        std::vector<Vertex*> aStar(int, int);
+        std::vector<Vertex*> GAStar(int, int);
     private:
         std::map <int, Vertex*> vertices;
-        int aStarHeuristicCost(Vertex*, Vertex*);
-        Vertex* getAStarSmallestVertex(std::map<Vertex*, int>);
-        std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*>, Vertex*);
 };
 
 #include "astar.cpp"
@@ -69,3 +66,8 @@ void Graph::printGraph(){
     }
 }
 
+std::vector<Vertex*> Graph::GAStar(int start, int end){
+    Vertex *begin = getVertex(start);
+    Vertex *goal = getVertex(end);
+    return aStar(begin, goal);
+}

@@ -1,6 +1,6 @@
 @echo off
 if "%1" == "compile" (
-    g++ -g -std=c++11 testing.cpp 
+    g++ -g -std=c++14 testing.cpp 
     if %ERRORLEVEL% NEQ 0 EXIT \B
     shift
 ) 

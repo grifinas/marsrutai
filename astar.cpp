@@ -1,8 +1,15 @@
-std::vector<Vertex*> Graph::aStar(int start, int end){
+std::vector<Vertex*> aStar(Vertex*, Vertex*, bool makeVirtualEdge = true);
+int aStarHeuristicCost(Vertex*, Vertex*);
+Vertex* getAStarSmallestVertex(std::map<Vertex*, int>, std::map<Vertex*, int>);
+std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*>, Vertex*);
+int aStarGetTotalPathWeight(std::vector<Vertex*>);
+std::vector<Vertex*> aStarGetPathToClosestOf(Vertex*, std::map<Vertex*, int>);
+
+std::vector<Vertex*> aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
     std::vector<Vertex*> result;
 
-    Vertex *begin = getVertex(start);
-    Vertex *goal = getVertex(end);
+    // Vertex *begin = getVertex(start);
+    // Vertex *goal = getVertex(end);
 
     std::map<Vertex*, int> closed;
     std::map<Vertex*, int> open;
@@ -19,10 +26,17 @@ std::vector<Vertex*> Graph::aStar(int start, int end){
     fScore[begin] = aStarHeuristicCost(begin, goal);
 
     while(open.size() > 0){
-        current = getAStarSmallestVertex(fScore);
+        current = getAStarSmallestVertex(open, fScore);
         if(current == goal){
             //solved
-            return aStarReconstructPath(cameFrom, current);
+            if(makeVirtualEdge){
+                std::vector<Vertex*> reconstructedPath = aStarReconstructPath(cameFrom, current);
+                int w = aStarGetTotalPathWeight(reconstructedPath);
+                begin -> makeVirtualEdge(goal, w);
+                return reconstructedPath;
+            }else{
+                return aStarReconstructPath(cameFrom, current);
+            }
         }
 
         open.erase(current);
@@ -56,7 +70,7 @@ std::vector<Vertex*> Graph::aStar(int start, int end){
     TODO write an actuall heuristic aproach?
     currently the cost is the smallest weight of all edges to goal
 */
-int Graph::aStarHeuristicCost(Vertex* vert, Vertex* goal){
+int aStarHeuristicCost(Vertex* vert, Vertex* goal){
     int lowInt = -1;
     for(auto const& i : goal->getNeighbours()){
         Edge e = i.first -> getNeighbour(goal);
@@ -67,19 +81,21 @@ int Graph::aStarHeuristicCost(Vertex* vert, Vertex* goal){
     return lowInt;
 }
 
-Vertex* Graph::getAStarSmallestVertex(std::map<Vertex*, int> fScore){
+Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, int> fScore){
     Vertex* lowest;
     int lowInt = -1;
-    for(auto const& i : fScore){
-        if(i.second > lowInt || lowInt < 0){
+    int score;
+    for(auto const& i : open){
+        score = fScore[i.first];
+        if(score > lowInt || lowInt < 0){
             lowest = i.first;
-            lowInt = i.second;
+            lowInt = score;
         }
     }
     return lowest;
 }
 
-std::vector<Vertex*> Graph::aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
+std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
     std::vector<Vertex*> totalPath;
     totalPath.push_back(current);
     while(cameFrom[current]){
@@ -91,11 +107,29 @@ std::vector<Vertex*> Graph::aStarReconstructPath(std::map<Vertex*, Vertex*> came
 
 int aStarGetTotalPathWeight(std::vector<Vertex*> totalPath){
     int pathWeight = 0;
-    for(int i=0; i<totalPath.size()-1; i++){
-        std::cout << totalPath[i] -> getId() << " -> " << totalPath[i+1] -> getId(); 
-        Edge e = totalPath[i] -> getNeighbour(totalPath[i+1]);
-        std::cout << " = " << e.weight << std::endl;
-        pathWeight += e.weight;
+    for(int i=0; i<totalPath.size()-1; i++){ 
+        try{
+            Edge e = totalPath[i] -> getNeighbour(totalPath[i+1]);
+            pathWeight += e.weight;
+        }catch(...){
+            continue;
+        }
     }
     return pathWeight;
+}
+
+std::vector<Vertex*> aStarGetPathToClosestOf(Vertex* start, std::map<Vertex*, int> vertices){
+    std::vector<Vertex*> finalPath, currentPath;
+    int finalWeight = -1;
+    int weight;
+    for(auto const& i : vertices){
+        currentPath = aStar(start, i.first);
+        weight = aStarGetTotalPathWeight(currentPath);
+        if(weight < finalWeight || finalWeight == -1){
+            finalWeight = weight;
+            finalPath = currentPath;
+        }
+    }
+
+    return finalPath;
 }

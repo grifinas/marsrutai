@@ -6,9 +6,12 @@ class Vertex{
         unsigned int getId();
         std::map <Vertex*, Edge> getNeighbours();
         Edge getNeighbour(Vertex*);
+        Edge getSmallestNeighbouringEdge(std::map<Vertex*, int>, std::map<Vertex*, int>&);
         Edge getSmallestNeighbouringEdge(std::map<Vertex*, int>);
+        Edge getSmallestNeighbouringEdge();
         void printVertex();
         void printEdges();
+        void makeVirtualEdge(Vertex*, int);
         Vertex();
         Vertex(int);
         ~Vertex();
@@ -23,6 +26,7 @@ class Vertex{
 struct Edge{
     Vertex* to;
     unsigned int weight;
+    bool isVirtual = false;
 };
 
 unsigned int Vertex::getId(){ return id; }
@@ -51,6 +55,22 @@ Edge Vertex::makeEdge(Vertex *p){
     return e;
 }
 
+void Vertex::makeVirtualEdge(Vertex* to, int weight){
+    Edge e;
+    e.to = to;
+    e.weight = weight;
+    e.isVirtual = true;
+
+    try{
+        Edge oldEdge = neighbours.at(to);
+        if(oldEdge.weight > e.weight){
+            neighbours[to] = e;
+        } 
+    }catch(std::out_of_range){
+        neighbours[to] = e;
+    }
+}
+
 void Vertex::printVertex(){
     std::cout << "Vertex::" << id;
     std::string text;
@@ -66,7 +86,11 @@ void Vertex::printVertex(){
 void Vertex::printEdges(){
     for(auto const& neighbour : neighbours){
         Edge e = neighbour.second;
-        std::cout << e.weight << " => " << e.to -> getId() << std::endl;
+        std::cout << e.weight;
+        if(e.isVirtual){
+            std::cout << "(v)"; 
+        }
+        std::cout << " => " << e.to -> getId() << std::endl;
     }
 }
 
@@ -86,14 +110,16 @@ Edge Vertex::getNeighbour(Vertex* v){
     return e;
 }
 
-Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited){
+Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited, std::map<Vertex*, int> &unVisited){
     Edge lowEdge;
     lowEdge.weight = -1;
     int count = 0;
     for(auto const& i : getNeighbours()){
         //safeguard so new Edge with a `to` to random memory wouldn't return
-        if(visited[i.first] && (++count < neighbours.size() || lowEdge.weight != -1)){
+        if(visited[i.first]/* && (++count < neighbours.size() || lowEdge.weight != -1)*/){
             continue;
+        }else{
+            unVisited[i.first] = 1;
         }
         Edge e = i.second;
         if(e.weight < lowEdge.weight || lowEdge.weight < 0){
@@ -107,4 +133,14 @@ Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited){
     }
 
     return lowEdge;
+}
+
+Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited){
+    std::map<Vertex*, int> unVisited;
+    return getSmallestNeighbouringEdge(visited, unVisited);
+}
+
+Edge Vertex::getSmallestNeighbouringEdge(){
+    std::map<Vertex*, int> visited;
+    return getSmallestNeighbouringEdge(visited);
 }
