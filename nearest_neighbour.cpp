@@ -7,27 +7,29 @@
 
 */
 
-std::vector<Vertex*> nearestNeighbour(Vertex* start){
+Tour nearestNeighbour(Graph &gg, int start, int depth = 0){
     std::map<Vertex*, int> visited;
     std::map<Vertex*, int> unVisited;
-    std::vector<Vertex*> result;
-    Vertex* current = start;
+    Tour result;
+    Vertex* current = gg[start];
     Edge e;
 
-    while(!visited[current]){
+    while(!visited[current] || unVisited.size() > 0){
         result.push_back(current);
         visited[current] = 1;
         unVisited.erase(current);
-        try{
-            e = current -> getSmallestNeighbouringEdge(visited, unVisited);
+        e = current -> getSmallestNeighbouringEdge(visited, unVisited, depth);
+        if(e.to != nullptr){
             current = e.to; 
-        }catch(std::runtime_error){
+        }else{
             //ran into a corner
             if(unVisited.size() > 0){
-                std::vector<Vertex*> pathToUnvisited = aStarGetPathToClosestOf(current, unVisited);
+                Tour pathToUnvisited = aStarGetPathToClosestOf(current, unVisited);
                 //skip current
                 for(int i=1; i< pathToUnvisited.size(); i++){
                     result.push_back(pathToUnvisited[i]);
+                    visited[pathToUnvisited[i]] = 1;
+                    unVisited.erase(pathToUnvisited[i]);
                 }
                 current = pathToUnvisited[pathToUnvisited.size()-1];
             }

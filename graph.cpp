@@ -1,23 +1,17 @@
-#include "vertex.cpp"
+Graph::Graph(){
+    vertexCount = 0;
+}
 
-class Graph{
-    public:
-        static unsigned int vertexCount;
+Graph::~Graph(){
+    std::cout << "killed a graph" << std::endl;
+    for(int i=0; i<vertices.size(); i++){
+        delete vertices[i];
+    }
+}
 
-        int addVertex();
-        bool vertexLink(int, int);
-        Vertex* getVertex(int);
-        Vertex* operator[](const int);
-        Vertex* operator++(const int);
-        void printGraph();
-        std::vector<Vertex*> GAStar(int, int);
-    private:
-        std::map <int, Vertex*> vertices;
-};
-
-#include "astar.cpp"
-
-unsigned int Graph::vertexCount = 0;
+int Graph::size(){
+    return vertexCount;
+}
 
 Vertex* Graph::operator[](const int id){
     return getVertex(id);
@@ -60,14 +54,28 @@ bool Graph::vertexLink(int v_id1, int v_id2){
 }
 
 void Graph::printGraph(){
+    if(vertices.size() == 0){
+        return;
+    }
     for(auto const& v : vertices){
+        // std::cout << v.first << std::endl;
         // std::cout << "@:" << v.first << " ";
         v.second -> printVertex();
     }
 }
 
-std::vector<Vertex*> Graph::GAStar(int start, int end){
+Tour Graph::GAStar(int start, int end){
     Vertex *begin = getVertex(start);
     Vertex *goal = getVertex(end);
     return aStar(begin, goal);
+}
+
+Tour Graph::findVerticesWithEdgeTo(Vertex* needle){
+    Tour result;
+    for(auto const &i : vertices){
+        if(i.second -> hasEdgeTo(needle)){
+            result.push_back(i.second);
+        }
+    }
+    return result;
 }
