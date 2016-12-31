@@ -18,6 +18,8 @@ using namespace std;
 #include "astar.cpp"
 #include "graph.cpp"
 
+#include "database.cpp"
+
 #include "nearest_neighbour.cpp"
 #include "ant_colony.cpp"
 // #include "match_twice_and_stich.cpp"
