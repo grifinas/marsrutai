@@ -6,6 +6,11 @@ Tour two_opt(Tour t){
 
 Tour twoOptSwap(Tour T, int from, int to){
     Vertex *tmp;
+    if(from > to){
+        from += to;
+        to = from-to;
+        from -= to;
+    }
     for(from; from < to; from++, to--){
         tmp = T[from];
         T[from] = T[to];

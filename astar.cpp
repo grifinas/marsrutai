@@ -42,7 +42,7 @@ Tour aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
             }
 
             tentative_gScore = gScore[current] + e.weight;
-            if(!open[vertPtr]){
+            if(!isAt(open, vertPtr)){
                 open[vertPtr] = 1;
             }else if(tentative_gScore >= gScore[vertPtr]){
                 continue;
@@ -64,6 +64,9 @@ Tour aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
     currently the cost is the smallest weight of all edges to goal
 */
 int aStarHeuristicCost(Vertex* vert, Vertex* goal){
+    if(vert == goal){
+        return 0;
+    }
     int lowInt = -1;
     for(auto const& i : goal->getNeighbours()){
         if(i.first -> hasEdgeTo(goal)){
@@ -82,7 +85,7 @@ Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, in
     int score;
     for(auto const& i : open){
         score = fScore[i.first];
-        if(score > lowInt || lowInt < 0){
+        if(score < lowInt || lowInt < 0){
             lowest = i.first;
             lowInt = score;
         }
@@ -93,17 +96,22 @@ Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, in
 Tour aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
     Tour totalPath;
     totalPath.push_back(current);
-    while(cameFrom[current]){
+    while(isAt(cameFrom, current)){
         current = cameFrom[current];
         totalPath.insert(totalPath.begin(), current);
     }
     return totalPath;
 }
 
-int aStarGetTotalPathWeight(Tour totalPath){
+int aStarGetTotalPathWeight(Tour totalPath, bool force_eval){
     int pathWeight = 0;
     for(int i=0; i<totalPath.size()-1; i++){ 
-        if(totalPath[i] -> hasEdgeTo(totalPath[i+1])){
+        bool hasEdgeTo = totalPath[i] -> hasEdgeTo(totalPath[i+1]);
+        if(!hasEdgeTo && force_eval && totalPath[i] -> getId() != totalPath[i+1] -> getId()){
+            Tour p = aStar(totalPath[i], totalPath[i+1], 1);
+            hasEdgeTo = totalPath[i] -> hasEdgeTo(totalPath[i+1]);
+        }
+        if(hasEdgeTo){
             Edge e = totalPath[i] -> getNeighbour(totalPath[i+1]);
             pathWeight += e.weight;
         }

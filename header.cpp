@@ -58,5 +58,7 @@ Tour aStar(Vertex*, Vertex*, bool makeVirtualEdge = true);
 int aStarHeuristicCost(Vertex*, Vertex*);
 Vertex* getAStarSmallestVertex(std::map<Vertex*, int>, std::map<Vertex*, int>);
 Tour aStarReconstructPath(std::map<Vertex*, Vertex*>, Vertex*);
-int aStarGetTotalPathWeight(Tour);
+int aStarGetTotalPathWeight(Tour, bool force_eval = false);
 Tour aStarGetPathToClosestOf(Vertex*, std::map<Vertex*, int>);
+
+int current_count, max_edges;

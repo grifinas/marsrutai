@@ -12,7 +12,7 @@ void printPath(Tour ll, string name = "", bool showSize = true){
         }
         cout << ">> ";
     }
-    cout << "total path weight: " << aStarGetTotalPathWeight(ll) << endl;
+    cout << "total path weight: " << aStarGetTotalPathWeight(ll, true) << endl;
 }
 
 void printMap(std::map<Vertex*, auto> map, string name = ""){

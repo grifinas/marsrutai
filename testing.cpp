@@ -5,6 +5,7 @@
 #include <map>
 #include <stdexcept>
 #include <chrono>
+#include <random>
 #include <math.h>
 
 struct Edge;
@@ -35,10 +36,11 @@ int main(int argc, char *argv[]){
 
     timestamp();
     for(int count = vertice_count; count < vertice_cap;){
-        for(int current_count = count, max_count = count+10; count < max_count; count++){
+        int max_count = count+10;
+        for(current_count = count; count < max_count; count++){
             srand(time(NULL));
             float ratio = (float)(count - current_count)/10;
-            int max_edges = current_count * (ratio + 0.1);
+            max_edges = current_count * (ratio + 0.1);
             std::string graph_name = "graph_" + std::to_string(current_count) + "_" + std::to_string(max_edges) + "_";
 
             std::cout << "current graph: " << graph_name << std::endl;
