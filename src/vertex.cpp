@@ -1,29 +1,21 @@
-#include <cstdlib>
-
-bool operator < (Edge e1, Edge e2){
-    if(e1.weight < e2.weight){
-        return true;
-    }
-    return false;
-}
-
-std::ostream& operator<<(std::ostream& os, const Edge &E){
-    os << E.weight;
-    if(E.isVirtual){
-        os << "(v)"; 
-    }
-    os << " => " << E.to -> getId();
-    return os;
-}
+#include "vertex.hpp"
 
 unsigned int Vertex::getId(){ return id; }
 
 Vertex::Vertex(){
     id = 0;
+    node_id = "";
     isEnabled = true;
 }
 
 Vertex::Vertex(int vert_id){
+    id = vert_id;
+    node_id = "";
+    isEnabled = true;
+}
+
+Vertex::Vertex(int vert_id, const char* nid){
+    node_id = nid;
     id = vert_id;
     isEnabled = true;
 }
@@ -41,7 +33,13 @@ void Vertex::disable(){
 }
 
 
+void Vertex::setLat(float a){lat = a;}
+void Vertex::setLng(float a){lng = a;}
+void Vertex::setId(unsigned int a){id = a;}
+void Vertex::setNodeId(const char* a){node_id = a;}
+
 Edge Vertex::addNeighbour(Vertex *n){
+    n -> newNeighboured(this);
     neighbours[n] = makeEdge(n); 
     return neighbours[n];
 }
@@ -70,14 +68,13 @@ void Vertex::makeVirtualEdge(Vertex* to, int weight){
 }
 
 void Vertex::printVertex(){
-    std::cout << "Vertex::" << id;
-    std::string text;
+    std::cout << "Vertex::" << id << " " << node_id << " ";
     if(neighbours.size() < 1){
-        text = "is unconnected";
+        std::cout << "is unconnected";
     }else{
-        text = "has Edges";
+        std::cout << "has Edges";
     }
-    std::cout << " " << text << std::endl;
+    std::cout << std::endl;
     printEdges();
 }
 
@@ -105,16 +102,17 @@ Edge Vertex::getNeighbour(Vertex* v){
     Edge e;
     try{
         e = neighbours.at(v);
-    }catch(std::out_of_range){
+    }catch(...){
         std::cout << "Vertex::getNeighbour vertex id: " << id << " is unable to get neighbour at position " << v << std::endl;
         try{
             std::cout << "Vertex id: " << v -> getId() << std::endl;
         }catch(...){}
-        throw std::out_of_range("no such vertex");
     }
-    
     return e;
 }
+
+void Vertex::newNeighboured(Vertex* v){ isNeighbouredBy.push_back(v);    }
+Tour Vertex::getNeighbouredVertices(){  return isNeighbouredBy; }
 
 Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited, std::map<Vertex*, int> &unVisited, int depth = 0){
     Edge lowEdge;
@@ -151,25 +149,6 @@ Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited, std::ma
     return lowEdge;
 }
 
-// Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited, std::map<Vertex*, int> &unVisited){
-//     Edge lowEdge;
-//     // int count = 0;
-//     for(auto const& i : getNeighbours()){
-//         //safeguard so new Edge with a `to` to random memory wouldn't return
-//         if(visited[i.first] == 1 || i.second.isEnabled == false/* && (++count < neighbours.size() || lowEdge.weight != -1)*/){
-//             continue;
-//         }else{
-//             unVisited[i.first] = 1;
-//         }
-//         Edge e = i.second;
-//         if(e.weight < lowEdge.weight || lowEdge.weight == 0){
-//             lowEdge = e;
-//         }
-//     }
-
-//     return lowEdge;
-// }
-
 Edge Vertex::getSmallestNeighbouringEdge(std::map<Vertex*, int> visited){
     std::map<Vertex*, int> unVisited;
     return getSmallestNeighbouringEdge(visited, unVisited);
@@ -188,4 +167,25 @@ int Vertex::countDoubleEdges(){
         }
     }
     return total;
+}
+
+std::ostream& operator<<(std::ostream& os, Vertex *V){
+    os << "Vertex:" << V->getId() << " ";
+    return os;
+}
+
+bool operator < (Edge e1, Edge e2){
+    if(e1.weight < e2.weight){
+        return true;
+    }
+    return false;
+}
+
+std::ostream& operator<<(std::ostream& os, const Edge &E){
+    os << E.weight;
+    if(E.isVirtual){
+        os << "(v)"; 
+    }
+    os << " => " << E.to -> getId();
+    return os;
 }

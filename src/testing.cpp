@@ -1,36 +1,97 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <fstream>
 #include <map>
 #include <stdexcept>
-#include <chrono>
 #include <random>
-#include <math.h>
 
-struct Edge;
 using namespace std;
 
-#include "header.cpp"
-#include "utils.cpp"
+#include "utils.hpp"
+#include "vertex.hpp"
+#include "astar.hpp"
+#include "graph.hpp"
 
-#include "vertex.cpp"
-#include "astar.cpp"
-#include "graph.cpp"
+#include "nearest_neighbour.hpp"
+#include "ant_colony.hpp"
+#include "branch_and_bound.hpp"
+#include "simulated_anealing.hpp"
 
-#include "database.cpp"
+void setGlobals(Graph* gg){
+    gg -> setGlobals();
+    ::start_vertex = gg -> getVertex(1);
+    Node *root = new Node();
+    root -> calcLowerBound();
+    ::lower_bound = root -> getLB();
+    delete root;
+}
 
-#include "nearest_neighbour.cpp"
-#include "ant_colony.cpp"
-// #include "match_twice_and_stich.cpp"
-#include "2-opt.cpp"
-#include "branch_and_bound.cpp"
-// #include "genetic.cpp"
-#include "simulated_anealing.cpp"
+// #include <QGuiApplication>
+// #include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[]){
+    timestamp();
+    Tour nn;
+    Graph* gg;
+    srand(time(NULL));
+
+
+    current_count = 5;
+    max_edges = 5;
+    gg = generateRandomGraph(current_count, max_edges);
+    cout << "to generate"; timestamp(true);
+    setGlobals(gg);
+
+    nn = BnB(*gg);
+    printPath(nn, "BnB ");
+
+    gg -> printGraph();
+    delete gg;
+    return 0;
+    tinyxml2::XMLDocument doc;
+    doc.LoadFile( "test.xml" );
+    gg = new Graph(doc.RootElement());
+    cout << "to generate"; timestamp(true);
+    gg -> printGraph();
+    cout << "to print"; timestamp(true);
+    nn = AntColonyOptimization(*gg, 1, 20, 7);
+
+    cout << "to colonise"; timestamp(true);
+    printPath(nn, "ants ");
+
+    delete gg;
+    return 0;
+
+
+    double minlat=54.6769, minlon=25.2823, maxlat=54.6797, maxlon=25.2898;
+    int zoom = 16;
+    int xfrom, xto, yfrom, yto;
+    xfrom = long2tilex(minlon, zoom);
+    xto = long2tilex(maxlon, zoom);
+    yfrom = lat2tiley(minlat, zoom);
+    yto = lat2tiley(maxlat, zoom);
+
+    if(xfrom > xto) swap(xfrom, xto);
+    if(yfrom > yto) swap(yfrom, yto);
+
+    auto def = "http://a.tile.openstreetmap.org";
+
+    cout << xfrom << " " << xto << " " << yfrom << " " << yto << std::endl;
+
+    for(int i=xfrom; i<=xto; i++){
+        for(int j=yfrom; j<=yto; j++){
+            std::cout << def << "/" << zoom << "/" << i << "/" << j << ".png" << std::endl;
+        }
+    }
+
+    return 0;
+
+
+
+
     int vertice_count = 10;
     int vertice_cap = 300;
+    int vertice_increment = 25;
     if(argc >= 2){
         vertice_count = std::stoi(argv[1]);
         std::cout << "starting from: " << vertice_count << std::endl;
@@ -38,7 +99,7 @@ int main(int argc, char *argv[]){
 
     timestamp();
     for(int count = vertice_count; count < vertice_cap;){
-        int max_count = count+10;
+        int max_count = count + vertice_increment;
         for(current_count = count; count < max_count; count++){
             srand(time(NULL));
             float ratio = (float)(count - current_count)/10;
@@ -64,7 +125,7 @@ int main(int argc, char *argv[]){
             cout << "to nn"; timestamp(true);
             printPath(nn, "nn ");
 
-            nn = SimulatedAnealing(*gg, 1, nn);
+            nn = SimulatedAnealing(*gg, nn);
             cout << "to sa"; timestamp(true);
             printPath(nn, "sa ");
 

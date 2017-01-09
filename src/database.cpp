@@ -1,3 +1,5 @@
+/*
+
 typedef std::map<std::string, char*> row;
 
 class DatabaseObject{
@@ -60,3 +62,5 @@ PGconn* DatabaseObject::MapDBConnect(){
     }
     return conn;
 }
+
+*/

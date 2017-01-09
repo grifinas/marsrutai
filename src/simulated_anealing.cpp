@@ -1,3 +1,5 @@
+#include "simulated_anealing.hpp"
+
 double acceptanceProbability(int newEn, int oldEn, double temp){
     // if (newEn < oldEn) {
     //     return 1.0;
@@ -6,7 +8,7 @@ double acceptanceProbability(int newEn, int oldEn, double temp){
     return exp((oldEn - newEn) / temp);
 }
 
-Tour SimulatedAnealing(Graph &gg, int start, Tour T){
+Tour SimulatedAnealing(Graph &gg, Tour T){
     //new random seed
     std::mt19937_64 rng;
     // initialize the random number generator with time-dependent seed

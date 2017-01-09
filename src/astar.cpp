@@ -1,3 +1,5 @@
+#include "astar.hpp"
+
 Tour aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
     Tour result;
 
@@ -42,7 +44,7 @@ Tour aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
             }
 
             tentative_gScore = gScore[current] + e.weight;
-            if(!isAt(open, vertPtr)){
+            if(open.find(vertPtr) == open.end()){
                 open[vertPtr] = 1;
             }else if(tentative_gScore >= gScore[vertPtr]){
                 continue;
@@ -96,7 +98,7 @@ Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, in
 Tour aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
     Tour totalPath;
     totalPath.push_back(current);
-    while(isAt(cameFrom, current)){
+    while(cameFrom.find(current) != cameFrom.end()){
         current = cameFrom[current];
         totalPath.insert(totalPath.begin(), current);
     }
@@ -105,7 +107,8 @@ Tour aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
 
 int aStarGetTotalPathWeight(Tour totalPath, bool force_eval){
     int pathWeight = 0;
-    for(int i=0; i<totalPath.size()-1; i++){ 
+    int ps = totalPath.size()-1;
+    for(int i=0; i<ps; i++){ 
         bool hasEdgeTo = totalPath[i] -> hasEdgeTo(totalPath[i+1]);
         if(!hasEdgeTo && force_eval && totalPath[i] -> getId() != totalPath[i+1] -> getId()){
             Tour p = aStar(totalPath[i], totalPath[i+1], 1);

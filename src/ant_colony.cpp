@@ -1,3 +1,5 @@
+#include "ant_colony.hpp"
+
 /****RULES*****
 
     1. It must visit each city exactly once;
@@ -16,7 +18,7 @@ struct PheromonedEdge{
     void operator<<(Edge e){
         weight = e.weight;
         to = e.to;
-        eta = (float)100/e.weight;
+        eta = (float)::longest_edge/e.weight;
     }
 };
 
@@ -26,6 +28,7 @@ struct Ant{
     Vertex *current;
     std::map<Vertex*, int> visited;
     Tour visitedVector;
+    std::map<Vertex*, bool> seen;
     void operator<<(Vertex* v){
         if(current_id == 0){
             ant_id = v -> getId();
@@ -40,24 +43,7 @@ struct Ant{
     }  
 };
 
-bool isComplete(const int vertCount, const Tour &T);
-void putPheromones(Graph &gg, std::vector<Ant> &Ants, std::map<Vertex*, std::map<Vertex*, PheromonedEdge>> &trail);
-
-
-std::ostream& operator<<(std::ostream& os, const Ant &ant){
-    os << ant.ant_id << " c:" << ant.current -> getId() << " p:";
-    for(int i = 0; i<ant.visitedVector.size(); i++){
-        os << ant.visitedVector[i] -> getId() << " -> ";
-    }  
-    return os;  
-}
-
-std::ostream& operator<<(std::ostream& os, const PheromonedEdge pe){
-    os << "p::" << pe.pheromones << " @" << pe.eta << " w" << pe.weight << " to " << pe.to -> getId();
-    return os;
-}
-
-Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int antCount = 0){
+Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes, int antCount){
     std::map<Vertex*, std::map<Vertex*, PheromonedEdge>> trail;
     float alpha, beta, gamma;
     alpha = 1;      //how valuable the pheromones are
@@ -82,7 +68,7 @@ Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int ant
     for(int i=0; i<antCount; i++){
         do{
             id = std::rand()%gg.size()+1;
-        }while(isAt(antAt, id));
+        }while(antAt.find(id) != antAt.end());
         antAt[id] = true;
         Ant a;
         a << gg[id];
@@ -98,13 +84,10 @@ Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int ant
             }
             isAntDone = 0;
             for(int i=0; i<Ants.size(); i++){
-                if(isComplete(gg.size(), Ants[i].visitedVector)){
-                    isAntDone++;
-                    continue;
-                }
                 sum_score = 0;
                 for(auto const& j : Ants[i].current -> getNeighbours()){
                     // j.first
+                    Ants[i].seen[j.first] = true;
                     PheromonedEdge pe;
                     try{
                         //has an edge
@@ -125,7 +108,7 @@ Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int ant
                     PheromonedEdge pe = option.second;
                     value = pow(pe.pheromones, alpha) + pow(pe.eta, beta);
                     // std::cout << "trail option " << option.first << "==" << option.first -> getId() << " value " << value << std::endl;
-                    if(isAt(Ants[i].visited, option.first)){
+                    if(Ants[i].visited.find(option.first) != Ants[i].visited.end()){
                         //already visited, aka not allowed(won't work well)
                         // std::cout << "ForAnt " << i << " has visited vertex " << option.first -> getId() << " (" << Ants[i].visited.at(option.first) << " times), so unatractive " << std::endl;
                         value /= gamma * Ants[i].visited.at(option.first);
@@ -137,6 +120,10 @@ Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int ant
                     } 
                 }
                 Ants[i] << high_v;
+                if(isComplete(Ants[i])){
+                    isAntDone++;
+                    continue;
+                }
             }
         }
     }
@@ -145,37 +132,74 @@ Tour AntColonyOptimization(Graph &gg, int start, int traversalTimes = 1, int ant
 
 
 void putPheromones(Graph &gg, std::vector<Ant> &Ants, std::map<Vertex*, std::map<Vertex*, PheromonedEdge>> &trail){
-    float evaporation = 0.1;  //10% evaporates for every ant
-    float pheromone = 1000; //how many pheromones to deposit
+    float evaporation = 0.05;  //10% evaporates for every ant
+    float pheromone = ::lower_bound; //how many pheromones to deposit
+
+    float lowest_weight =-1;
+    int lowest_i=0;
     for(int i=0; i<Ants.size(); i++){
         std::string name = "Ant ";
         name = name + std::to_string(Ants[i].visitedVector.front() -> getId());
         name += " | ";
         // printPath(Ants[i].visitedVector, name);
-        for(int j=0; j<Ants[i].visitedVector.size()-1; j++){
-            trail[Ants[i].visitedVector[j]][Ants[i].visitedVector[j+1]].pheromones *= 1 - evaporation;
-            trail[Ants[i].visitedVector[j]][Ants[i].visitedVector[j+1]].pheromones += pheromone/aStarGetTotalPathWeight(Ants[i].visitedVector);  
+        if(::deterministic_ACO){
+            int w = aStarGetTotalPathWeight(Ants[i].visitedVector, true);
+            if(w < lowest_weight || lowest_weight == -1){
+                lowest_weight = w;
+                Ants[lowest_i].visited.clear();
+                Ants[lowest_i].visitedVector.clear();
+                Ants[lowest_i].seen.clear();
+                Ants[lowest_i] << gg[Ants[lowest_i].ant_id];
+                lowest_i = i;
+            }else{
+                Ants[i].visited.clear();
+                Ants[i].visitedVector.clear();
+                Ants[i].seen.clear();
+                Ants[i] << gg[Ants[i].ant_id];
+            }
+        }else{
+            for(int j=0; j<Ants[i].visitedVector.size()-1; j++){
+                trail[Ants[i].visitedVector[j]][Ants[i].visitedVector[j+1]].pheromones *= 1 - evaporation;
+                trail[Ants[i].visitedVector[j]][Ants[i].visitedVector[j+1]].pheromones += pheromone/aStarGetTotalPathWeight(Ants[i].visitedVector, true);
+            }
+            Ants[i].visited.clear();
+            Ants[i].visitedVector.clear();
+            Ants[i].seen.clear();
+            Ants[i] << gg[Ants[i].ant_id];
         }
-        Ants[i].visited.clear();
-        Ants[i].visitedVector.clear();
-        Ants[i] << gg[Ants[i].ant_id];
     }
+    if(::deterministic_ACO){
+        for(int j=0; j<Ants[lowest_i].visitedVector.size()-1; j++){
+            trail[Ants[lowest_i].visitedVector[j]][Ants[lowest_i].visitedVector[j+1]].pheromones *= 1 - evaporation;
+            trail[Ants[lowest_i].visitedVector[j]][Ants[lowest_i].visitedVector[j+1]].pheromones += pheromone/aStarGetTotalPathWeight(Ants[lowest_i].visitedVector, true);
+        }
+        Ants[lowest_i].visited.clear();
+        Ants[lowest_i].visitedVector.clear();
+        Ants[lowest_i].seen.clear();
+        Ants[lowest_i] << gg[Ants[lowest_i].ant_id];
+    }
+
 }
 
-//O(N^2)
-bool isComplete(const int vertCount, const Tour &T){
-    for(int i=1; i<vertCount; i++){
-        bool isAccountedFor = false;
-        for(int j=0; j<T.size(); j++){
-            if(T[j] -> getId() == i){
-                //id accounted for
-                isAccountedFor = true;
-                break;
-            }
-        }
-        if(!isAccountedFor){
+bool isComplete(Ant a){
+    std::map<Vertex*, bool> seen_we_visited = a.seen;
+    for(auto const &i : a.seen){
+        if(a.visited.find(i.first) == a.visited.end()){
             return false;
         }
     }
     return true;
+}
+
+std::ostream& operator<<(std::ostream& os, const Ant &ant){
+    os << ant.ant_id << " c:" << ant.current -> getId() << " p:";
+    for(int i = 0; i<ant.visitedVector.size(); i++){
+        os << ant.visitedVector[i] -> getId() << " -> ";
+    }  
+    return os;  
+}
+
+std::ostream& operator<<(std::ostream& os, const PheromonedEdge pe){
+    os << "p::" << pe.pheromones << " @" << pe.eta << " w" << pe.weight << " to " << pe.to -> getId();
+    return os;
 }

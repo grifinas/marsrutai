@@ -1,3 +1,5 @@
+#include "nearest_neighbour.hpp"
+
 /****RULES*****
 
     1. find V - closest unvisited vertex to current
@@ -7,7 +9,7 @@
 
 */
 
-Tour nearestNeighbour(Graph &gg, int start, int depth = 0){
+Tour nearestNeighbour(Graph &gg, int start, int depth){
     std::map<Vertex*, int> visited;
     std::map<Vertex*, int> unVisited;
     Tour result;
@@ -32,6 +34,7 @@ Tour nearestNeighbour(Graph &gg, int start, int depth = 0){
                     unVisited.erase(pathToUnvisited[i]);
                 }
                 current = pathToUnvisited[pathToUnvisited.size()-1];
+                current -> getSmallestNeighbouringEdge(visited, unVisited, depth);
             }
         }
     }
