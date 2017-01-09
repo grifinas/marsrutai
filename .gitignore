@@ -1,2 +1,6 @@
 a.exe
+a.exe.stackdump
+err.txt
+log.txt
+*.csv
 .vscode/

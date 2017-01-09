@@ -1,12 +1,7 @@
-std::vector<Vertex*> aStar(Vertex*, Vertex*, bool makeVirtualEdge = true);
-int aStarHeuristicCost(Vertex*, Vertex*);
-Vertex* getAStarSmallestVertex(std::map<Vertex*, int>, std::map<Vertex*, int>);
-std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*>, Vertex*);
-int aStarGetTotalPathWeight(std::vector<Vertex*>);
-std::vector<Vertex*> aStarGetPathToClosestOf(Vertex*, std::map<Vertex*, int>);
+#include "astar.hpp"
 
-std::vector<Vertex*> aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
-    std::vector<Vertex*> result;
+Tour aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
+    Tour result;
 
     // Vertex *begin = getVertex(start);
     // Vertex *goal = getVertex(end);
@@ -30,7 +25,7 @@ std::vector<Vertex*> aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
         if(current == goal){
             //solved
             if(makeVirtualEdge){
-                std::vector<Vertex*> reconstructedPath = aStarReconstructPath(cameFrom, current);
+                Tour reconstructedPath = aStarReconstructPath(cameFrom, current);
                 int w = aStarGetTotalPathWeight(reconstructedPath);
                 begin -> makeVirtualEdge(goal, w);
                 return reconstructedPath;
@@ -49,7 +44,7 @@ std::vector<Vertex*> aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
             }
 
             tentative_gScore = gScore[current] + e.weight;
-            if(!open[vertPtr]){
+            if(open.find(vertPtr) == open.end()){
                 open[vertPtr] = 1;
             }else if(tentative_gScore >= gScore[vertPtr]){
                 continue;
@@ -71,11 +66,16 @@ std::vector<Vertex*> aStar(Vertex* begin, Vertex* goal, bool makeVirtualEdge){
     currently the cost is the smallest weight of all edges to goal
 */
 int aStarHeuristicCost(Vertex* vert, Vertex* goal){
+    if(vert == goal){
+        return 0;
+    }
     int lowInt = -1;
     for(auto const& i : goal->getNeighbours()){
-        Edge e = i.first -> getNeighbour(goal);
-        if(e.weight < lowInt || lowInt < 0){
-            lowInt = e.weight;
+        if(i.first -> hasEdgeTo(goal)){
+            Edge e = i.first -> getNeighbour(goal);
+            if(e.weight < lowInt || lowInt < 0){
+                lowInt = e.weight;
+            }
         }
     }
     return lowInt;
@@ -87,7 +87,7 @@ Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, in
     int score;
     for(auto const& i : open){
         score = fScore[i.first];
-        if(score > lowInt || lowInt < 0){
+        if(score < lowInt || lowInt < 0){
             lowest = i.first;
             lowInt = score;
         }
@@ -95,31 +95,35 @@ Vertex* getAStarSmallestVertex(std::map<Vertex*, int> open, std::map<Vertex*, in
     return lowest;
 }
 
-std::vector<Vertex*> aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
-    std::vector<Vertex*> totalPath;
+Tour aStarReconstructPath(std::map<Vertex*, Vertex*> cameFrom, Vertex* current){
+    Tour totalPath;
     totalPath.push_back(current);
-    while(cameFrom[current]){
+    while(cameFrom.find(current) != cameFrom.end()){
         current = cameFrom[current];
         totalPath.insert(totalPath.begin(), current);
     }
     return totalPath;
 }
 
-int aStarGetTotalPathWeight(std::vector<Vertex*> totalPath){
+int aStarGetTotalPathWeight(Tour totalPath, bool force_eval){
     int pathWeight = 0;
-    for(int i=0; i<totalPath.size()-1; i++){ 
-        try{
+    int ps = totalPath.size()-1;
+    for(int i=0; i<ps; i++){ 
+        bool hasEdgeTo = totalPath[i] -> hasEdgeTo(totalPath[i+1]);
+        if(!hasEdgeTo && force_eval && totalPath[i] -> getId() != totalPath[i+1] -> getId()){
+            Tour p = aStar(totalPath[i], totalPath[i+1], 1);
+            hasEdgeTo = totalPath[i] -> hasEdgeTo(totalPath[i+1]);
+        }
+        if(hasEdgeTo){
             Edge e = totalPath[i] -> getNeighbour(totalPath[i+1]);
             pathWeight += e.weight;
-        }catch(...){
-            continue;
         }
     }
     return pathWeight;
 }
 
-std::vector<Vertex*> aStarGetPathToClosestOf(Vertex* start, std::map<Vertex*, int> vertices){
-    std::vector<Vertex*> finalPath, currentPath;
+Tour aStarGetPathToClosestOf(Vertex* start, std::map<Vertex*, int> vertices){
+    Tour finalPath, currentPath;
     int finalWeight = -1;
     int weight;
     for(auto const& i : vertices){
@@ -132,4 +136,14 @@ std::vector<Vertex*> aStarGetPathToClosestOf(Vertex* start, std::map<Vertex*, in
     }
 
     return finalPath;
+}
+
+void aStarRoute(Tour &soFar, Vertex* start, Vertex* goal, bool skipFirst = true){
+    Tour route = aStar(start, goal);
+    std::cout << start -> getId() << " route to " << goal -> getId() << std::endl;
+    //skip initial node of start
+
+    for(int i=skipFirst?1:0; i<route.size(); i++){
+        soFar.push_back(route[i]);
+    }
 }

@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API">
+<note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+<meta osm_base="2017-01-05T12:34:03Z"/>
+
+  <bounds minlat="54.6769" minlon="25.2832" maxlat="54.6797" maxlon="25.2889"/>
+
+  <node id="31441298" lat="54.6782978" lon="25.2864865"/>
+  <node id="31441300" lat="54.6789790" lon="25.2846867"/>
+  <node id="31441310" lat="54.6784469" lon="25.2851532"/>
+  <node id="31441311" lat="54.6781007" lon="25.2863060"/>
+  <node id="31441601" lat="54.6773519" lon="25.2877058"/>
+  <node id="31441602" lat="54.6777757" lon="25.2875515"/>
+  <node id="31441604" lat="54.6793001" lon="25.2878991"/>
+  <node id="59970329" lat="54.6778895" lon="25.2866050"/>
+  <node id="59971394" lat="54.6792522" lon="25.2837498"/>
+  <node id="59971471" lat="54.6778203" lon="25.2845454"/>
+  <node id="59971472" lat="54.6773775" lon="25.2842631"/>
+  <node id="59971478" lat="54.6778091" lon="25.2835077"/>
+  <node id="59971489" lat="54.6771458" lon="25.2849326"/>
+  <node id="461101965" lat="54.6791578" lon="25.2878286"/>
+  <node id="461101977" lat="54.6792620" lon="25.2874151"/>
+  <node id="481295017" lat="54.6790184" lon="25.2853472"/>
+  <node id="482210133" lat="54.6791623" lon="25.2850096"/>
+  <node id="485081365" lat="54.6794148" lon="25.2856357"/>
+  <node id="489934140" lat="54.6795511" lon="25.2857019"/>
+  <node id="576340599" lat="54.6782818" lon="25.2874270"/>
+  <node id="892447905" lat="54.6792602" lon="25.2884793"/>
+  <node id="892448001" lat="54.6790081" lon="25.2884138"/>
+  <node id="1273621117" lat="54.6776402" lon="25.2872746"/>
+  <node id="1273621147" lat="54.6777204" lon="25.2870904"/>
+  <node id="1278569169" lat="54.6789633" lon="25.2887511"/>
+  <node id="1281874410" lat="54.6777374" lon="25.2835115"/>
+  <node id="1281893116" lat="54.6773208" lon="25.2844287"/>
+  <node id="1281893184" lat="54.6776112" lon="25.2846618"/>
+  <node id="1281893218" lat="54.6776621" lon="25.2844566"/>
+  <node id="1568873631" lat="54.6784888" lon="25.2866664"/>
+  <node id="1568873637" lat="54.6790987" lon="25.2849023"/>
+  <node id="2123409384" lat="54.6770633" lon="25.2840372"/>
+  <node id="2787152372" lat="54.6795821" lon="25.2857166"/>
+  <node id="2896180830" lat="54.6790423" lon="25.2847991"/>
+  <node id="2896180832" lat="54.6785231" lon="25.2866980"/>
+  <node id="3406160437" lat="54.6771638" lon="25.2888454"/>
+  <node id="4062421128" lat="54.6792515" lon="25.2846459"/>
+  <node id="4062421129" lat="54.6793111" lon="25.2847653"/>
+  <node id="4062421131" lat="54.6791878" lon="25.2845257"/>
+  <node id="4062421132" lat="54.6791385" lon="25.2844253"/>
+  <node id="4062421133" lat="54.6796599" lon="25.2843735"/>
+  <node id="4062421134" lat="54.6795994" lon="25.2842242"/>
+  <node id="4062421135" lat="54.6795506" lon="25.2841100"/>
+  <node id="4062421137" lat="54.6795001" lon="25.2839805"/>
+  <node id="4103474255" lat="54.6786510" lon="25.2877762"/>
+  <node id="4103474256" lat="54.6786216" lon="25.2879999"/>
+  <node id="4103474257" lat="54.6786789" lon="25.2876011"/>
+  <node id="4103474264" lat="54.6783620" lon="25.2885031"/>
+  <way id="4870213">
+    <nd ref="31441298"/>
+    <nd ref="3827786818"/>
+    <nd ref="2101673758"/>
+    <nd ref="31441299"/>
+    <nd ref="1283015546"/>
+    <nd ref="31441300"/>
+    <nd ref="31441301"/>
+    <nd ref="4062421130"/>
+    <nd ref="4062421132"/>
+    <nd ref="31441302"/>
+    <nd ref="3828373745"/>
+    <nd ref="4062421136"/>
+    <nd ref="4062421137"/>
+    <nd ref="4062421141"/>
+    <nd ref="31441303"/>
+    <nd ref="494231603"/>
+    <nd ref="31441304"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="lanes" v="2"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Vokiečių g."/>
+    <tag k="name:be" v="Нямецкая вуліца"/>
+    <tag k="name:lt" v="Vokiečių g."/>
+    <tag k="name:ru" v="улица Вокечю"/>
+    <tag k="oneway" v="no"/>
+    <tag k="sidewalk" v="right"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="4870214">
+    <nd ref="31441305"/>
+    <nd ref="3830066602"/>
+    <nd ref="2341049705"/>
+    <nd ref="59971394"/>
+    <nd ref="31441307"/>
+    <nd ref="1283015622"/>
+    <nd ref="31441308"/>
+    <nd ref="1283015561"/>
+    <nd ref="31441309"/>
+    <nd ref="760767376"/>
+    <nd ref="3827786832"/>
+    <nd ref="3827786830"/>
+    <nd ref="31441310"/>
+    <nd ref="1434190548"/>
+    <nd ref="31441311"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Vokiečių g."/>
+    <tag k="name:be" v="Нямецкая вуліца"/>
+    <tag k="name:lt" v="Vokiečių g."/>
+    <tag k="name:ru" v="улица Вокечю"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="4872291">
+    <nd ref="31441604"/>
+    <nd ref="892447905"/>
+    <nd ref="33765847"/>
+    <nd ref="1278535174"/>
+    <nd ref="1278569218"/>
+    <nd ref="31455654"/>
+    <nd ref="2358857000"/>
+    <nd ref="60464891"/>
+    <nd ref="3089447074"/>
+    <nd ref="31455653"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="motor_vehicle:conditional" v="destination @ (00:00 - 06:00)"/>
+    <tag k="name" v="Savičiaus g."/>
+    <tag k="name:be" v="вуліца Савіч"/>
+    <tag k="name:lt" v="Savičiaus g."/>
+    <tag k="name:ru" v="улица Савичяус"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="4872292">
+    <nd ref="31295268"/>
+    <nd ref="31441606"/>
+    <nd ref="31441605"/>
+    <nd ref="2962344073"/>
+    <nd ref="267427624"/>
+    <nd ref="461101977"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="8019751">
+    <nd ref="31441311"/>
+    <nd ref="1273621133"/>
+    <nd ref="2333682549"/>
+    <nd ref="59970328"/>
+    <nd ref="59970329"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="8019752">
+    <nd ref="1273621147"/>
+    <nd ref="59971304"/>
+    <nd ref="1273621117"/>
+    <nd ref="2495983999"/>
+    <nd ref="2495983998"/>
+    <nd ref="31441601"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="8020534">
+    <nd ref="31441601"/>
+    <nd ref="31441602"/>
+    <tag k="bicycle" v="designated"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="8020625">
+    <nd ref="59970329"/>
+    <nd ref="3827786833"/>
+    <nd ref="1434190561"/>
+    <nd ref="59971368"/>
+    <nd ref="59971369"/>
+    <nd ref="59971370"/>
+    <nd ref="59971489"/>
+    <nd ref="59971371"/>
+    <nd ref="59971372"/>
+    <nd ref="3828373747"/>
+    <nd ref="2123409377"/>
+    <nd ref="2151547492"/>
+    <nd ref="59971373"/>
+    <tag k="bicycle" v="yes"/>
+    <tag k="highway" v="residential"/>
+    <tag k="maxspeed" v="50"/>
+    <tag k="name" v="Rūdninkų g."/>
+    <tag k="name:be" v="Рудніцкая вуліца"/>
+    <tag k="name:lt" v="Rūdninkų g."/>
+    <tag k="name:ru" v="улица Руднинку"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="source:maxspeed" v="LT:urban"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="8020645">
+    <nd ref="59971396"/>
+    <nd ref="59971395"/>
+    <nd ref="1281874213"/>
+    <nd ref="1281874368"/>
+    <nd ref="1281874406"/>
+    <nd ref="1281874429"/>
+    <nd ref="59971394"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Šv. Mikalojaus g."/>
+    <tag k="name:be" v="вуліца Св. Мікалая"/>
+    <tag k="name:lt" v="Šv. Mikalojaus g."/>
+    <tag k="name:ru" v="улица Шв. Микалояус"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="8020662">
+    <nd ref="59971398"/>
+    <nd ref="59971406"/>
+    <nd ref="59971407"/>
+    <nd ref="1281881441"/>
+    <nd ref="59971408"/>
+    <nd ref="1281881443"/>
+    <nd ref="59971409"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="maxspeed" v="40"/>
+    <tag k="name" v="Žemaitijos g."/>
+    <tag k="name:lt" v="Žemaitijos g."/>
+    <tag k="name:ru" v="улица Жемаитийос"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="8020702">
+    <nd ref="59971471"/>
+    <nd ref="482478593"/>
+    <nd ref="31441310"/>
+    <tag k="access" v="yes"/>
+    <tag k="bicycle" v="yes"/>
+    <tag k="foot" v="yes"/>
+    <tag k="highway" v="residential"/>
+    <tag k="horse" v="no"/>
+    <tag k="motor_vehicle" v="no"/>
+    <tag k="name" v="Mėsinių g."/>
+    <tag k="name:be" v="Ятковая вуліца"/>
+    <tag k="name:lt" v="Mėsinių g."/>
+    <tag k="name:ru" v="улица Месиню"/>
+    <tag k="surface" v="paving_stones"/>
+  </way>
+  <way id="8020704">
+    <nd ref="59971398"/>
+    <nd ref="59971473"/>
+    <nd ref="59971474"/>
+    <nd ref="3827786837"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="maxspeed" v="40"/>
+    <tag k="name" v="Šiaulių g."/>
+    <tag k="name:be" v="Шавельская вуліца"/>
+    <tag k="name:lt" v="Šiaulių g."/>
+    <tag k="name:ru" v="улица Шяулю"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="8020707">
+    <nd ref="59971471"/>
+    <nd ref="59971478"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Ašmenos g."/>
+    <tag k="name:be" v="Ашмянская вуліца"/>
+    <tag k="name:lt" v="Ašmenos g."/>
+    <tag k="name:ru" v="улица Ашменос"/>
+  </way>
+  <way id="8020708">
+    <nd ref="59971489"/>
+    <nd ref="1434190545"/>
+    <nd ref="1281893116"/>
+    <nd ref="59971472"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="motor_vehicle:conditional" v="no @ (22:00-06:00)"/>
+    <tag k="name" v="Dysnos g."/>
+    <tag k="name:lt" v="Dysnos g."/>
+    <tag k="name:ru" v="улица Диснос"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="8020927">
+    <nd ref="31441550"/>
+    <nd ref="482449095"/>
+    <nd ref="59971579"/>
+    <nd ref="59971580"/>
+    <nd ref="2787152372"/>
+    <nd ref="489934140"/>
+    <nd ref="485081347"/>
+    <nd ref="3186644291"/>
+    <nd ref="59971581"/>
+    <nd ref="485081365"/>
+    <nd ref="485081367"/>
+    <nd ref="59971582"/>
+    <nd ref="481295017"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="M. Antokolskio g."/>
+    <tag k="name:be" v="вуліца М. Антакольскага"/>
+    <tag k="name:lt" v="M. Antokolskio g."/>
+    <tag k="name:ru" v="улица М. Антоколскио"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="8075872">
+    <nd ref="60464848"/>
+    <nd ref="60464872"/>
+    <nd ref="60464873"/>
+    <nd ref="3406160437"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Šv. Kazimiero g."/>
+    <tag k="name:be" v="вуліца Св. Казіміра"/>
+    <tag k="name:lt" v="Šv. Kazimiero g."/>
+    <tag k="name:ru" v="улица Шв. Казимеро"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="38045408">
+    <nd ref="59971398"/>
+    <nd ref="59971397"/>
+    <nd ref="3074541064"/>
+    <nd ref="2422186642"/>
+    <nd ref="3074541069"/>
+    <nd ref="59971396"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="name" v="Šv. Mikalojaus g."/>
+    <tag k="name:be" v="вуліца Св. Мікалая"/>
+    <tag k="name:lt" v="Šv. Mikalojaus g."/>
+    <tag k="name:ru" v="улица Шв. Микалояус"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="38045409">
+    <nd ref="59971471"/>
+    <nd ref="1281893218"/>
+    <nd ref="59971472"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Mėsinių g."/>
+    <tag k="name:be" v="Ятковая вуліца"/>
+    <tag k="name:lt" v="Mėsinių g."/>
+    <tag k="name:ru" v="улица Месиню"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="38838702">
+    <nd ref="461101965"/>
+    <nd ref="461101977"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="40094318">
+    <nd ref="59971478"/>
+    <nd ref="1281874196"/>
+    <nd ref="59971398"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Ašmenos g."/>
+    <tag k="name:be" v="Ашмянская вуліца"/>
+    <tag k="name:lt" v="Ašmenos g."/>
+    <tag k="name:ru" v="улица Ашменос"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="40094860">
+    <nd ref="31441600"/>
+    <nd ref="772754366"/>
+    <nd ref="59971297"/>
+    <nd ref="31441601"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Aušros Vartų g."/>
+    <tag k="name:be" v="Вострабрамская вуліца"/>
+    <tag k="name:lt" v="Aušros Vartų g."/>
+    <tag k="name:pl" v="Ostrobramska"/>
+    <tag k="name:ru" v="улица Аушрос Варту"/>
+  </way>
+  <way id="40235050">
+    <nd ref="485081362"/>
+    <nd ref="485081365"/>
+    <tag k="highway" v="footway"/>
+  </way>
+  <way id="40451868">
+    <nd ref="489934140"/>
+    <nd ref="489934142"/>
+    <nd ref="489934145"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="parking_aisle"/>
+  </way>
+  <way id="40451983">
+    <nd ref="59971472"/>
+    <nd ref="59971479"/>
+    <nd ref="2468051002"/>
+    <nd ref="2468051004"/>
+    <nd ref="59971480"/>
+    <nd ref="1281874445"/>
+    <nd ref="1281874410"/>
+    <nd ref="59971478"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Dysnos g."/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="40544527">
+    <nd ref="485081346"/>
+    <nd ref="59971394"/>
+    <tag k="highway" v="footway"/>
+  </way>
+  <way id="51084556">
+    <nd ref="59971472"/>
+    <nd ref="2123409384"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="maxspeed" v="40"/>
+    <tag k="name" v="Mėsinių g."/>
+    <tag k="name:be" v="Ятковая вуліца"/>
+    <tag k="name:lt" v="Mėsinių g."/>
+    <tag k="name:ru" v="улица Месиню"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="54055201">
+    <nd ref="1568873631"/>
+    <nd ref="2896180832"/>
+    <nd ref="461101977"/>
+    <nd ref="461101965"/>
+    <nd ref="4103474257"/>
+    <nd ref="31441603"/>
+    <nd ref="576340599"/>
+    <nd ref="1568873631"/>
+    <tag k="area" v="yes"/>
+    <tag k="foot" v="yes"/>
+    <tag k="highway" v="pedestrian"/>
+    <tag k="name" v="Rotušės a."/>
+    <tag k="surface" v="cobblestone"/>
+    <tag k="wikipedia" v="lt:Vilniaus rotušės aikštė"/>
+  </way>
+  <way id="75583859">
+    <nd ref="892447905"/>
+    <nd ref="892448001"/>
+    <nd ref="1278569169"/>
+    <nd ref="4103475110"/>
+    <nd ref="1278568912"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="111868264">
+    <nd ref="1273621117"/>
+    <nd ref="59970330"/>
+    <nd ref="1273621130"/>
+    <nd ref="2495984000"/>
+    <nd ref="2495984001"/>
+    <nd ref="59970331"/>
+    <nd ref="31441602"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="112504612">
+    <nd ref="702947870"/>
+    <nd ref="4103474255"/>
+    <nd ref="1278535664"/>
+    <nd ref="1278535227"/>
+    <nd ref="4103474256"/>
+    <nd ref="1278535472"/>
+    <nd ref="1278535567"/>
+    <nd ref="1278535635"/>
+    <nd ref="1278535184"/>
+    <nd ref="702947871"/>
+    <nd ref="702947870"/>
+    <tag k="addr:city" v="Vilnius"/>
+    <tag k="addr:housenumber" v="22"/>
+    <tag k="addr:postcode" v="01128"/>
+    <tag k="addr:street" v="Didžioji g."/>
+    <tag k="building" v="yes"/>
+  </way>
+  <way id="112870749">
+    <nd ref="1281893218"/>
+    <nd ref="1281893184"/>
+    <nd ref="1281893121"/>
+    <nd ref="1281893116"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="parking_aisle"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="132505209">
+    <nd ref="31441602"/>
+    <nd ref="576340599"/>
+    <nd ref="31441603"/>
+    <nd ref="4103474257"/>
+    <nd ref="461101965"/>
+    <tag k="bicycle" v="designated"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="135131348">
+    <nd ref="461101965"/>
+    <nd ref="31441604"/>
+    <nd ref="267427624"/>
+    <tag k="bicycle" v="designated"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="135131349">
+    <nd ref="461101977"/>
+    <nd ref="2896180832"/>
+    <nd ref="1568873631"/>
+    <nd ref="31441298"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="135131357">
+    <nd ref="59970329"/>
+    <nd ref="1273621123"/>
+    <nd ref="1273621147"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="yes"/>
+  </way>
+  <way id="143360412">
+    <nd ref="31455655"/>
+    <nd ref="1568873648"/>
+    <nd ref="1729001923"/>
+    <nd ref="1729001922"/>
+    <nd ref="31441550"/>
+    <nd ref="1729001911"/>
+    <nd ref="1568873645"/>
+    <nd ref="1729001885"/>
+    <nd ref="3127797796"/>
+    <nd ref="1568873643"/>
+    <nd ref="2787152368"/>
+    <nd ref="1568873641"/>
+    <nd ref="1568873639"/>
+    <nd ref="461101977"/>
+    <tag k="foot" v="yes"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Stiklių g."/>
+    <tag k="name:be" v="Шкляная вуліца"/>
+    <tag k="name:lt" v="Stiklių g."/>
+    <tag k="name:ru" v="улица Стиклю"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="143360416">
+    <nd ref="1568873637"/>
+    <nd ref="482210133"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="143360417">
+    <nd ref="2896180830"/>
+    <nd ref="1568873637"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+    <tag k="service" v="parking_aisle"/>
+    <tag k="surface" v="asphalt"/>
+    <tag k="tunnel" v="building_passage"/>
+  </way>
+  <way id="143360420">
+    <nd ref="31441300"/>
+    <nd ref="2896180830"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="195696995">
+    <nd ref="2061152866"/>
+    <nd ref="482210128"/>
+    <nd ref="489934153"/>
+    <nd ref="494231604"/>
+    <nd ref="4062421139"/>
+    <nd ref="59971555"/>
+    <nd ref="3186644294"/>
+    <nd ref="4062421133"/>
+    <nd ref="4062421129"/>
+    <nd ref="481295012"/>
+    <nd ref="482210133"/>
+    <nd ref="481295017"/>
+    <nd ref="481337323"/>
+    <nd ref="3181657813"/>
+    <nd ref="482449098"/>
+    <tag k="highway" v="service"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="oneway" v="no"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="202367538">
+    <nd ref="2123409380"/>
+    <nd ref="2123409383"/>
+    <nd ref="2123409385"/>
+    <nd ref="59971489"/>
+    <tag k="highway" v="footway"/>
+  </way>
+  <way id="202367539">
+    <nd ref="2123409377"/>
+    <nd ref="2123409378"/>
+    <nd ref="2123409379"/>
+    <nd ref="2123409380"/>
+    <nd ref="2123409381"/>
+    <nd ref="2123409384"/>
+    <tag k="highway" v="footway"/>
+  </way>
+  <way id="238999414">
+    <nd ref="1281874410"/>
+    <nd ref="2468051009"/>
+    <nd ref="2468051008"/>
+    <nd ref="2468051006"/>
+    <nd ref="2468051005"/>
+    <nd ref="2468051003"/>
+    <nd ref="2468051001"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="paved"/>
+  </way>
+  <way id="273911476">
+    <nd ref="2787152372"/>
+    <nd ref="2787152370"/>
+    <nd ref="2787152396"/>
+    <tag k="highway" v="service"/>
+  </way>
+  <way id="273911477">
+    <nd ref="2787152349"/>
+    <nd ref="3127797791"/>
+    <nd ref="2787152353"/>
+    <nd ref="485081365"/>
+    <tag k="highway" v="service"/>
+  </way>
+  <way id="285977299">
+    <nd ref="31441298"/>
+    <nd ref="31441381"/>
+    <nd ref="31441311"/>
+    <tag k="cycleway:left" v="lane"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Didžioji g."/>
+    <tag k="name:be" v="Вялікая вуліца"/>
+    <tag k="name:lt" v="Didžioji g."/>
+    <tag k="name:pl" v="Wielka"/>
+    <tag k="name:ru" v="улица Диджиойи"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="285977305">
+    <nd ref="576340599"/>
+    <nd ref="1568873631"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="motor_vehicle" v="no"/>
+    <tag k="service" v="alley"/>
+    <tag k="surface" v="cobblestone"/>
+  </way>
+  <way id="285977307">
+    <nd ref="481347380"/>
+    <nd ref="2896180832"/>
+    <tag k="highway" v="service"/>
+  </way>
+  <way id="312743698">
+    <nd ref="3186314590"/>
+    <nd ref="4062421128"/>
+    <nd ref="3186314608"/>
+    <nd ref="3186314589"/>
+    <nd ref="4062421131"/>
+    <nd ref="3186314600"/>
+    <nd ref="3186314590"/>
+    <tag k="building" v="yes"/>
+  </way>
+  <way id="312743699">
+    <nd ref="3186314601"/>
+    <nd ref="4062421135"/>
+    <nd ref="3186314602"/>
+    <nd ref="3186314603"/>
+    <nd ref="4062421134"/>
+    <nd ref="3186314599"/>
+    <nd ref="3186314601"/>
+    <tag k="building" v="yes"/>
+  </way>
+  <way id="312743700">
+    <nd ref="3186314594"/>
+    <nd ref="1568873637"/>
+    <nd ref="3186314588"/>
+    <nd ref="3186314607"/>
+    <nd ref="2896180830"/>
+    <nd ref="3186314592"/>
+    <nd ref="3186314594"/>
+    <tag k="building" v="yes"/>
+  </way>
+  <way id="333497384">
+    <nd ref="3406160435"/>
+    <nd ref="3406160438"/>
+    <nd ref="1278568874"/>
+    <nd ref="3406160458"/>
+    <nd ref="3406160437"/>
+    <nd ref="3406160436"/>
+    <nd ref="3406160435"/>
+    <tag k="building" v="yes"/>
+  </way>
+  <way id="333497386">
+    <nd ref="3406160437"/>
+    <nd ref="3406160438"/>
+    <tag k="highway" v="living_street"/>
+    <tag k="maxspeed" v="20"/>
+    <tag k="name" v="Šv. Kazimiero g."/>
+    <tag k="name:be" v="вуліца Св. Казіміра"/>
+    <tag k="name:lt" v="Šv. Kazimiero g."/>
+    <tag k="name:ru" v="улица Шв. Казимеро"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="tunnel" v="building_passage"/>
+  </way>
+  <way id="372824446">
+    <nd ref="1278569169"/>
+    <nd ref="3763718156"/>
+    <nd ref="3763718259"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="372824447">
+    <nd ref="892448001"/>
+    <nd ref="3763718258"/>
+    <nd ref="3763717585"/>
+    <nd ref="3763717584"/>
+    <nd ref="4069400380"/>
+    <tag k="highway" v="service"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="379480370">
+    <nd ref="1281893184"/>
+    <nd ref="3827786835"/>
+    <nd ref="3827786836"/>
+    <tag k="highway" v="service"/>
+  </way>
+  <way id="379480371">
+    <nd ref="59971475"/>
+    <nd ref="2123409384"/>
+    <tag k="highway" v="unclassified"/>
+    <tag k="maxspeed" v="40"/>
+    <tag k="motor_vehicle:conditional" v="no @ (22:00-06:00)"/>
+    <tag k="name" v="Mėsinių g."/>
+    <tag k="name:be" v="Ятковая вуліца"/>
+    <tag k="name:lt" v="Mėsinių g."/>
+    <tag k="name:ru" v="улица Месиню"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="surface" v="asphalt"/>
+  </way>
+  <way id="403948735">
+    <nd ref="4062421128"/>
+    <nd ref="4062421129"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="403948737">
+    <nd ref="4062421128"/>
+    <nd ref="4062421131"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+    <tag k="tunnel" v="building_passage"/>
+  </way>
+  <way id="403948738">
+    <nd ref="4062421131"/>
+    <nd ref="4062421132"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="403948739">
+    <nd ref="4062421134"/>
+    <nd ref="4062421133"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="403948740">
+    <nd ref="4062421134"/>
+    <nd ref="4062421135"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+    <tag k="tunnel" v="building_passage"/>
+  </way>
+  <way id="403948741">
+    <nd ref="4062421135"/>
+    <nd ref="4062421137"/>
+    <tag k="highway" v="service"/>
+    <tag k="oneway" v="no"/>
+  </way>
+  <way id="408412883">
+    <nd ref="4103474262"/>
+    <nd ref="4103474261"/>
+    <nd ref="4103474264"/>
+    <nd ref="4103474260"/>
+    <nd ref="4103474259"/>
+    <nd ref="4103474258"/>
+    <nd ref="4103474256"/>
+    <tag k="access" v="permissive"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="driveway"/>
+  </way>
+  <way id="408412884">
+    <nd ref="4103474263"/>
+    <nd ref="4103474264"/>
+    <tag k="access" v="permissive"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="driveway"/>
+  </way>
+  <way id="408412885">
+    <nd ref="4103474256"/>
+    <nd ref="4103474265"/>
+    <nd ref="4103474255"/>
+    <tag k="access" v="permissive"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="driveway"/>
+    <tag k="tunnel" v="building_passage"/>
+  </way>
+  <way id="408412887">
+    <nd ref="4103474255"/>
+    <nd ref="4103474257"/>
+    <tag k="highway" v="service"/>
+    <tag k="service" v="driveway"/>
+  </way>
+
+</osm>
